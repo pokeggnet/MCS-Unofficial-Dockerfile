@@ -12,15 +12,6 @@ RUN apt-get update && \
     apt-get install -y openjdk-${JDK_VERSION_11}-jre-headless && \
     rm -rf /var/lib/apt/lists/*
 
-# Install openjdk 8 from AdoptOpenJDK
-RUN apt-get update && \
-    apt-get install -y wget gnupg ca-certificates && \
-    wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | gpg --dearmor > /usr/share/keyrings/adoptopenjdk-archive-keyring.gpg && \
-    echo "deb [signed-by=/usr/share/keyrings/adoptopenjdk-archive-keyring.gpg] https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/ buster main" | tee /etc/apt/sources.list.d/adoptopenjdk.list > /dev/null && \
-    apt-get update && \
-    apt-get install -y adoptopenjdk-${JDK_VERSION_8}-hotspot-jre && \
-    rm -rf /var/lib/apt/lists/*
-
 # Install openjdk 17 from Debian Bullseye repositories
 RUN echo "deb http://deb.debian.org/debian bullseye main" >> /etc/apt/sources.list && \
     apt-get update && \
