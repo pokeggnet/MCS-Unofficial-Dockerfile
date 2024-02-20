@@ -1,0 +1,24 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: mcs
+spec:
+  tags:
+  - name: web
+    annotations:
+      openshift.io/imported-from: web
+    from:
+      kind: DockerImage
+      name: web
+    importPolicy: {}
+    referencePolicy:
+      type: Source
+  - name: daemon
+    annotations:
+      openshift.io/imported-from: daemon
+    from:
+      kind: DockerImage
+      name: daemon
+    importPolicy: {}
+    referencePolicy:
+      type: Source
